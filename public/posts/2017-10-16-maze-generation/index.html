@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="Tom Dalby" />
+<meta name="description" content="A sporadic dev blog." />
+<meta name="keywords" content="blog, tech" />
+<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+<meta name="generator" content="Hugo 0.31.1" />
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link rel="canonical" href="thomasjackdalby.github.io/posts/2017-10-16-maze-generation/">
+<base href="thomasjackdalby.github.io" />
+<meta property="og:title" content="Maze Generation" />
+<meta property="og:description" content="Over the past few months I&rsquo;ve been experimenting a fair amount with procedural generation. It started out from an interest in Roguelikes (a genre of RPG, check out the subreddit) but has expanded into a variety of more general areas, one of which is &ldquo;maze generation&rdquo;.
+I&rsquo;ve found that there is quite a selection of different approaches for procedural maze generation. In this blog post I&rsquo;ll cover just the two that I proto-typed, but keep in mind this only scratches the surface of the available methods out there." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="thomasjackdalby.github.io/posts/2017-10-16-maze-generation/" />
+
+
+
+<meta property="article:published_time" content="2017-10-16T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2017-10-16T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Maze Generation"/>
+<meta name="twitter:description" content="Over the past few months I&rsquo;ve been experimenting a fair amount with procedural generation. It started out from an interest in Roguelikes (a genre of RPG, check out the subreddit) but has expanded into a variety of more general areas, one of which is &ldquo;maze generation&rdquo;.
+I&rsquo;ve found that there is quite a selection of different approaches for procedural maze generation. In this blog post I&rsquo;ll cover just the two that I proto-typed, but keep in mind this only scratches the surface of the available methods out there."/>
+
+
+
+<meta itemprop="name" content="Maze Generation">
+<meta itemprop="description" content="Over the past few months I&rsquo;ve been experimenting a fair amount with procedural generation. It started out from an interest in Roguelikes (a genre of RPG, check out the subreddit) but has expanded into a variety of more general areas, one of which is &ldquo;maze generation&rdquo;.
+I&rsquo;ve found that there is quite a selection of different approaches for procedural maze generation. In this blog post I&rsquo;ll cover just the two that I proto-typed, but keep in mind this only scratches the surface of the available methods out there.">
+
+
+<meta itemprop="datePublished" content="2017-10-16T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2017-10-16T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="280">
+
+
+
+<meta itemprop="keywords" content="" />
+
+
+<link rel="stylesheet" href="css/layout.css" />
+<style type="text/css">
+body {
+  background-color: #101010;
+  color: #dbdbdb;
+}
+
+a { color: #dbdbdb; }
+
+pre {
+  background: #1D1F21;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+}
+
+code {
+  background: #1D1F21;
+}
+
+blockquote {
+  background: #1D1F21;
+  border-left: 3px solid #dbdbdb;
+}
+
+table {
+  margin: 1em auto;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #dbdbdb;
+}
+
+th {
+  background: #dbdbdb;
+  color: #101010;
+}
+
+.siteTitle a { color: #99cc66; }
+
+.post .content h1{ color: #99cc66; }
+.post .content h2{ color: #99cc66; }
+.post .content h3{ color: #99cc66; }
+.post .content h4{ color: #99cc66; }
+.post .content h5{ color: #99cc66; }
+.post .content h6{ color: #99cc66; }
+.post .content a:hover { color: #99cc66; }
+.social-link:hover { color: #99cc66; }
+.nav-item-title:hover { color: #99cc66; }
+.tag a:hover { color: #99cc66; }
+.copyright { color: #404040 }
+.poweredby { color: #404040 }
+.poweredby a { color: #404040; }
+.post-preview .title a{ color: #99cc66; }
+.content-item a:hover{
+  text-decoration: underline;
+  color: #99cc66;
+}
+.post-list .title { color: #99cc66; }
+.rmore { color: #99cc66; }
+.terms .term a:hover {
+  text-decoration: underline;
+  color: #99cc66;
+}
+
+</style>
+
+
+
+<title>
+
+
+     Maze Generation 
+
+</title>
+
+</head>
+
+
+<body>
+<div class="main">
+<header>
+
+<div class="header-bar">
+
+  <nav>
+    <div class="siteTitle">
+      <a href="thomasjackdalby.github.io">Tom Dalby</a>
+    </div> 
+
+    
+    
+    <a class="nav-item" href="thomasjackdalby.github.io/posts/"><div class="nav-item-title">Posts</div></a>
+    
+    <a class="nav-item" href="thomasjackdalby.github.io/tags/"><div class="nav-item-title">Tags</div></a>
+    
+
+  </nav>
+</div>
+
+  
+<div class="social-links-header">
+
+  
+  <a href="mailto:myemail"><div class="social-link">email</div></a>
+  
+
+  
+  <a href="https://github.com/github%20id" target="_blank"><div class="social-link">gh</div></a>
+  
+
+  
+  <a href="https://gitlab.com/gitlab%20id" target="_blank"><div class="social-link">gl</div></a>
+  
+
+  
+  <a href="https://twitter.com/twitter%20id" target="_blank"><div class="social-link">twtr</div></a>
+  
+
+  
+  <a href="https://www.linkedin.com/in/linkedin%20id" target="_blank"><div class="social-link">in</div></a>
+  
+
+</div>
+
+
+</header>
+
+
+<article class="post">
+    <h1 class="title"> Maze Generation </h1>
+    <div class="content"> 
+
+<p>Over the past few months I&rsquo;ve been experimenting a fair amount with procedural generation. It started out from an interest in Roguelikes (a genre of RPG, check out the <a href="www.reddit.com/r/roguelikedev">subreddit</a>) but has expanded into a variety of more general areas, one of which is &ldquo;maze generation&rdquo;.</p>
+
+<p>I&rsquo;ve found that there is quite a selection of different approaches for procedural maze generation. In this blog post I&rsquo;ll cover just the two that I proto-typed, but keep in mind this only scratches the surface of the available methods out there.</p>
+
+<h3 id="depth-first-search">Depth-first search.</h3>
+
+<p>The depth-first search algorithm takes a single walker, who randomly walks in a grid of cells. It can be thought of as a miner digging a series of tunnels, but keeping a map such that he never digs back into a tunnel he&rsquo;s already dug.</p>
+
+<p>If he digs himself into a cell which has already has tunnels behind the other three walls, he walks back along the tunnel to the first cell which has a wall which does not back onto a tunnel, and carries on with his random digging.</p>
+
+<p><img src="thomasjackdalby.github.io/maze_generation/depth_1.gif" alt="Depth first" />{: .center-image }</p>
+
+<p>This approach works pretty well, however has a tendency to produce long tunnels with little branching, as branching only occurs when longer tunnels get stuck.</p>
+
+<h3 id="other-search">Other search</h3>
+
+<p>This approach is a bit different. At each step of the algorithm, a walker takes a random path around the grid of cells, keeping track of where they have walked. If they walk onto a spot they&rsquo;ve already walked on, they &ldquo;forget&rdquo; all the path they&rsquo;ve walked since that spot, and then continue on. If they walk onto a spot they walked on during a previous path</p>
+
+<p><img src="thomasjackdalby.github.io/maze_generation/walk_1.gif" alt="Random walking" />{: .center-image }</p>
+ </div>
+    <footer class="post-footer">
+
+  <div class="post-footer-data">
+    
+<div class="tags">
+    
+</div>
+
+    <div class="date"> Oct 16, 2017 </div>
+  </div>
+
+</footer>
+
+
+
+</article>
+
+  <footer>
+
+  <div class="social-links-footer">
+
+  
+  <a href="mailto:myemail"><div class="social-link">Email</div></a>
+  
+
+  
+  <a href="https://github.com/github%20id" target="_blank"><div class="social-link">GitHub</div></a>
+  
+
+  
+  <a href="https://gitlab.com/gitlab%20id" target="_blank"><div class="social-link">GitLab</div></a>
+  
+
+  
+  <a href="https://twitter.com/twitter%20id" target="_blank"><div class="social-link">Twitter</div></a>
+  
+
+  
+  <a href="https://www.linkedin.com/in/linkedin%20id" target="_blank"><div class="social-link">LinkedIn</div></a>
+  
+
+  <div class="social-link">
+  <a href="thomasjackdalby.github.io/index.xml" target="_blank">RSS</a>
+  </div>
+
+</div>
+
+
+  <div class="copyright"> Copyright (c) 2017, all rights reserved. </div>
+
+  <div class="poweredby">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+  </div>
+
+  </footer>
+
+</div> 
+
+</body>
+</html>
+

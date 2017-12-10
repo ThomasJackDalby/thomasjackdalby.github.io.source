@@ -1,0 +1,51 @@
+baseURL = "thomasjackdalby.github.io"
+languageCode = "en-us"
+title = "Tom Dalby"
+copyright = "Copyright (c) 2017, all rights reserved."
+canonifyurls = true
+paginate = 3
+theme = "hugo-dusk"
+
+googleAnalytics = ""
+disqusShortname = ""
+
+[author]
+  name = "Tom Dalby"
+
+SectionPagesMenu = "main"
+
+# use Chroma for syntax highlight
+pygmentsStyle = "native" # other dark style options: vim, fruity, monokai
+# enable syntax highlight for code blocks
+pygmentsCodeFences = true
+
+[[menu.main]]
+  name = "Posts"
+  weight = -120
+  identifier = "posts"
+  url = "/posts/"
+
+[[menu.main]]
+  name = "Tags"
+  weight = -110
+  identifier = "tag"
+  url = "/tags/"
+
+[params.meta]
+  keywords = "blog, tech"
+  description = "A sporadic dev blog."
+
+[params]
+  github = "github id"
+  gitlab = "gitlab id"
+  twitter = "twitter id"
+  linkedin = "linkedin id"
+  email = "myemail"
+
+[params.colors]
+  # hugo-dusk colors
+  background = "#101010" # background color for the site
+  main = "#99cc66"
+  text = "#dbdbdb"
+  code-quote-bg = "#1D1F21" # background color for quotes and code blocks
+  copyright = "#404040" # copyright text color
