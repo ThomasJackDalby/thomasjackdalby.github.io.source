@@ -2,3 +2,6 @@
 	path = public
 	url = https://github.com/ThomasJackDalby/thomasjackdalby.github.io.git
 	branch = master
+[submodule ".\\themes\\hugo-future-imperfect"]
+	path = .\\themes\\hugo-future-imperfect
+	url = https://github.com/jpescador/hugo-future-imperfect.git

@@ -1,6 +1,7 @@
 ---
 title:  "Dragon Curves"
 date:   "2017-07-30"
+type: "post"
 ---
 
 So I've taken to reading a pretty neat magazine released monthly called [Chalkdust](http://chalkdustmagazine.com/). 
@@ -81,7 +82,7 @@ function draw() {
 
 And then, hey presto!
 
-![An order 1 dragon curve!](/dragoncurves/curve1.png)
+![An order 1 dragon curve!](/img/dragoncurves/curve1.png)
 
 It's then pretty easy to create a function that will let us create a few curves in one image.
 
@@ -97,15 +98,15 @@ function make_curve(order, x, y){
 
 The push() and the pop() here, are taking a snapshot of the current reference frame, and then "popping" back to that. This allows fairly complex transforms to draw the curves, but contains those transforms inside a function, without leaking out into the rest of the script. This helps, as otherwise any transform you applied to the reference frame, would affect EVERYTHING you subsequently draw.. yeah..
 
-![Dragon curves from order 1 to 4](/dragoncurves/curves1to4.png)
+![Dragon curves from order 1 to 4](/img/dragoncurves/curves1to4.png)
 
 We can take this a step further though. Another great property of dragon curves is that they tesselate!
 
-![4 curves rotated into a patch](/dragoncurves/curvespatch4.png)
+![4 curves rotated into a patch](/img/dragoncurves/curvespatch4.png)
 
 We can then also tesselate the patches by offsetting them in x and y.
 
-![Full patch](/dragoncurves/patched.png)
+![Full patch](/img/dragoncurves/patched.png)
 
 So naturally you can go on and on! I'll end the post here, but If you want to play with the code, the source is on [github](https://github.com/ThomasJackDalby/experimental/tree/master/dragoncurves)! Feel free to experiment!
 

@@ -1,6 +1,7 @@
 ---
 title:  "public Blog b = new Blog();"
 date:   "2017-07-29"
+type: "post"
 ---
 
 Hello and welcome. 

@@ -1,6 +1,8 @@
 ---
 title:  "A Python Module Hell"
 date:   "2017-09-28"
+type: "post"
+draft: true
 ---
 
 # A Python Module Hell
