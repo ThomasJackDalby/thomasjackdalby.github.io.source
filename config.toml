@@ -25,7 +25,6 @@ disqusShortname = "yourdiscussshortname"
     rtl = false
     inverted = true
     math = true
-    custom_css = ["css/custom.css"]
 
 # Social links
 [[params.social]]
