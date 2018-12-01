@@ -2,6 +2,8 @@
 title:  "Maze Generation"
 date:   "2017-10-16"
 type: "post"
+tags: []
+categories: []
 ---
 
 Over the past few months I've been experimenting a fair amount with procedural generation. It started out from an interest in Roguelikes (a genre of RPG, check out the [subreddit](www.reddit.com/r/roguelikedev)) but has expanded into a variety of more general areas, one of which is "maze generation".

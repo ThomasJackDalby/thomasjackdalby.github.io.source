@@ -1,7 +1,8 @@
 ---
 title:  "A Python Module Hell"
 date:   "2017-09-28"
-type: "post"
+tags: []
+categories: []
 draft: true
 ---
 
@@ -35,9 +36,3 @@ from package_c.c_2 import C_2
 from package_b.package_d.d_1 import D_1
 from package_b.package_d.d_2 import D_2
 ```
-
-
-
-
-
-

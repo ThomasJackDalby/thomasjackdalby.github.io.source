@@ -1,5 +1,2 @@
 # ignore build files
 public/
-
-# ignore git submodules
-themes/

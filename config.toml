@@ -1,53 +1,55 @@
-baseURL = "/"
-languageCode = "en-us"
-title = "Tom Dalby"
-copyright = "Copyright (c) 2017, all rights reserved."
-# canonifyurls = true
-paginate = 3
-# theme = "hugo-dusk"
-theme = "hugo-future-imperfect"
+baseurl = "https://thomasjackdalby.github.io"
+title = "thomasjackdalby"
+theme = "hugo-coder"
+languagecode = "en"
+defaultcontentlanguage = "en"
+paginate = 20
 
-googleAnalytics = ""
-disqusShortname = ""
-
-[author]
-  name = "Tom Dalby"
-
-SectionPagesMenu = "main"
-
-# use Chroma for syntax highlight
-pygmentsCodeFences = true
-# pygmentsUseClasses = true
-pygmentsStyle = "manni"
-
-[[menu.main]]
-  name = "Posts"
-  weight = -120
-  identifier = "posts"
-  url = "/posts/"
-
-[[menu.main]]
-  name = "Tags"
-  weight = -110
-  identifier = "tag"
-  url = "/tags/"
-
-[params.meta]
-  keywords = "blog, tech"
-  description = "A sporadic dev blog."
+pygmentsstyle = "native"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+disqusShortname = "yourdiscussshortname"
 
 [params]
-  github = "thomasjackdalby"
-  gitlab = "gitlab id"
-  twitter = "twitter id"
-  linkedin = "linkedin id"
-  email = "myemail"
-  useChroma = true
-  
-[params.colors]
-  # hugo-dusk colors
-  background = "#101010" # background color for the site
-  main = "#67e5ee"
-  text = "#dbdbdb"
-  code-quote-bg = "#1D1F21" # background color for quotes and code blocks
-  copyright = "#404040" # copyright text color
+    author = "Thomas Jack Dalby"
+    info = "Engineer. Consultant. Developer."
+    description = "Projects and development blog."
+    keywords = "blog,developer,personal"
+    avatarurl = "images/avatar.jpg"
+    favicon_32 = "/img/favicon-32x32.png"
+    favicon_16 = "/img/favicon-16x16.png"
+    footercontent = "Enter a text here."
+    hidecredits = false
+    hidecopyright = false
+
+    rtl = false
+    inverted = true
+    math = true
+    custom_css = ["css/custom.css"]
+
+# Social links
+[[params.social]]
+    name = "Github"
+    icon = "fab fa-github fa-2x"
+    weight = 1
+    url = "https://github.com/thomasjackdalby/"
+[[params.social]]
+    name = "Gitlab"
+    icon = "fab fa-gitlab fa-2x"
+    weight = 2
+    url = "https://gitlab.com/johndoe/"
+[[params.social]]
+    name = "Twitter"
+    icon = "fab fa-twitter fa-2x"
+    weight = 3
+    url = "https://twitter.com/johndoe/"
+
+# Menu links
+[[menu.main]]
+    name = "Blog"
+    weight = 1
+    url  = "/posts/"
+[[menu.main]]
+    name = "About"
+    weight = 2
+    url = "/about/"

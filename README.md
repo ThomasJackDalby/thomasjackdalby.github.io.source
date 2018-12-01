@@ -4,8 +4,7 @@ Source files for website
 
 ## Usage
 
-run hugo at the root directory to build the website in the public folder.
+`hugo` will build the website into the public folder.
+`hugo serve` will build and serve the website at http://localhost:1313
 
-If happy with content etc, copy over to the thomasjackdalby.github.io repo and commit+push.
-
-To see what it all looks like, run hugo serve which will start a webserver hosting on http://localhost:1313
+`publish` or `publish.bat` will copy the public folder from thomasjackdalby.github.io.source to thomasjackdalby.github.io. It can then be commited and pushed to GitHub.
