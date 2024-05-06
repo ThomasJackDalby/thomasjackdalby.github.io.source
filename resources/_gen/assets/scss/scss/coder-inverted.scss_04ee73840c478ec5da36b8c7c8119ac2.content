@@ -58,7 +58,6 @@ body.inverted .navigation .menu-button {
       color: #fafafa; }
       body.inverted .navigation .menu-button:hover, body.inverted .navigation .menu-button:focus {
         color: #f44336; } }
-
 body.inverted .footer a {
   color: #f44336; }
 

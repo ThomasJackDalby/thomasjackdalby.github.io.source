@@ -18,9 +18,8 @@ disqusShortname = "yourdiscussshortname"
     avatarurl = "images/profile.png"
     favicon_32 = "/img/favicon-32x32.png"
     favicon_16 = "/img/favicon-16x16.png"
-    footercontent = "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. -Martin Fowler"
-    hidecredits = false
-    hidecopyright = false
+    hidecredits = true
+    hidecopyright = true
 
     rtl = false
     inverted = true
